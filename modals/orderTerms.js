@@ -139,7 +139,7 @@ module.exports = {
               "flow": {
                 "actions": []
               },
-              "custom_id": "close"
+              "custom_id": "close_ticket"
             }
           ]
         }
