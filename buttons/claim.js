@@ -38,7 +38,7 @@ module.exports = {
                     "components": [
                         {
                             "type": 10,
-                            "content": `> <:fcso_check:1506063526182125608> ${interaction.user} has claimed this ticket. You will be assisted shortly.`
+                            "content": `> <:check:1503593424299753555> ${interaction.user} has claimed this ticket. You will be assisted shortly.`
                         }
                     ]
                 }
