@@ -1,107 +1,13 @@
-const {
-  ChannelType,
-  PermissionFlagsBits
-} = require("discord.js");
-
 module.exports = {
-  customId: "order_modal",
-
-  async execute(interaction) {
-    const CATEGORY_ID = "1503425738010005638";
-    const STAFF_ROLE_IDS = ["1503107376105001060", "1503466003869335654"];
-
-    const budget = interaction.fields.getTextInputValue("budget");
-    const description = interaction.fields.getTextInputValue("description");
-    const quantity = interaction.fields.getTextInputValue("quantity");
-
-    const username = interaction.user.username
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, "");
-
-    const existing = interaction.guild.channels.cache.find(
-      c => c.topic === interaction.user.id
-    );
-
-    if (existing) {
-      return interaction.reply({
-        content: `<:xMark:1503593360995254383> You already have an open order: ${existing}`,
-        flags: 64
-      });
-    }
-
-    const staffRoles = STAFF_ROLE_IDS
-      .map(roleId => interaction.guild.roles.cache.get(roleId))
-      .filter(role => role);
-
-    console.log("Resolved roles:", staffRoles.map(r => `${r.name} (${r.id})`));
-
-    const overwrites = [
-      {
-        id: interaction.guild.id,
-        deny: [PermissionFlagsBits.ViewChannel]
-      },
-      {
-        id: interaction.user.id,
-        allow: [
-          PermissionFlagsBits.ViewChannel,
-          PermissionFlagsBits.SendMessages,
-          PermissionFlagsBits.ReadMessageHistory,
-          PermissionFlagsBits.AttachFiles,
-          PermissionFlagsBits.EmbedLinks
-        ]
-      },
-      ...staffRoles.map(role => ({
-        id: role.id,
-        allow: [
-          PermissionFlagsBits.ViewChannel,
-          PermissionFlagsBits.SendMessages,
-          PermissionFlagsBits.ReadMessageHistory,
-          PermissionFlagsBits.AttachFiles,
-          PermissionFlagsBits.EmbedLinks,
-          PermissionFlagsBits.ManageChannels
-        ]
-      }))
-    ];
-
-    const channel = await interaction.guild.channels.create({
-      name: `order-${username}`,
-      type: ChannelType.GuildText,
-      parent: CATEGORY_ID,
-      topic: interaction.user.id,
-      permissionOverwrites: overwrites
-    });
-
-    await interaction.reply({
-  ephemeral: true,
-  "flags": 32768,
-  "components": [
-    {
-      "type": 17,
-      "components": [
-        {
-          "type": 10,
-          "content": `<:check:1503593424299753555> Your order has been created successfully: ${channel}`
-        },
-        {
-          "type": 14,
-          "spacing": 2
-        },
-        {
-          "type": 12,
-          "items": [
-            {
-              "media": {
-                "url": "https://media.discordapp.net/attachments/1503464946401542196/1503465528725999626/image.png?ex=6a0372e3&is=6a022163&hm=ee33865ea69c77fb8dc317ce76b2c328afb44487e638715ceadb0c0be9e55ed6&=&format=webp&quality=lossless"
-              }
-            }
-          ]
+    name: "services",
+    
+    async execute (message) {
+        if (!message.member.permissions.has("Administrator")) {
+            return;
         }
-      ]
-    }
-  ]
-});
-
-    await channel.send({
+        await message.delete();
+        const channel = message.guild.channels.cache.get("1503425345783726192");
+        await channel.send({
   "flags": 32768,
   "components": [
     {
@@ -112,14 +18,10 @@ module.exports = {
           "items": [
             {
               "media": {
-                "url": "https://media.discordapp.net/attachments/1503464946401542196/1503603552029900913/image.png?ex=6a03f36e&is=6a02a1ee&hm=785c0b6fb9b07c19f32ef57e65505a5a34ed2ab5f0f6b18c8d3cc1cd72842515&=&format=webp&quality=lossless"
+                "url": "https://media.discordapp.net/attachments/1510896301028409465/1510896449020231700/Services.png?ex=6a1e7b78&is=6a1d29f8&hm=0b1839f6f8ef4b26fb235b9c402f65d73581b8de299c4669f706c53ad0735de6&=&format=webp&quality=lossless"
               }
             }
           ]
-        },
-        {
-          "type": 10,
-          "content": `-# @everyone | ${interaction.user}`
         },
         {
           "type": 14,
@@ -127,25 +29,38 @@ module.exports = {
         },
         {
           "type": 10,
-          "content": `<:bell:1503469398676209820> A new order has been opened. Review the order information below. Ensure to comply with all guidelines listed in our Order Terms section to avoid having your order closed.\n\n**Budget:** ${budget}\n**Quantity:** ${quantity}\n**Description:** ${description}`
+          "content": "If you're looking to order with **Stack Dev**, ensure to review our Order Terms below. By opening an order, you agree to our Order Terms & that your ticket will be closed with no notice or refund if terms are violated. Order using the button below. Ensure to submit detailed & accurate information to make it easier for our team."
+        },
+        {
+          "type": 14,
+          "divider": false
         },
         {
           "type": 1,
           "components": [
             {
-              "style": 4,
+              "style": 1,
               "type": 2,
-              "label": "Close",
+              "label": "Order",
               "flow": {
                 "actions": []
               },
-              "custom_id": "close"
+              "custom_id": "order"
+            },
+            {
+              "style": 2,
+              "type": 2,
+              "label": "Order Terms",
+              "flow": {
+                "actions": []
+              },
+              "custom_id": "order_terms"
             }
           ]
         }
       ]
     }
   ]
-});
-  }
-};
+})
+    }
+}
