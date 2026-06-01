@@ -1,5 +1,5 @@
 module.exports = {
-    name: "inprogress",
+    name: "completed",
 
     async execute (message) {
         const isAdmin = message.member.permissions.has("Administrator");
