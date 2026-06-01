@@ -1,7 +1,7 @@
 const discordTranscripts = require("discord-html-transcripts");
 
 module.exports = {
-  customId: "close_ticket",
+  customId: "crclose",
 
   async execute(interaction) {
 

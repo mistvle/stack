@@ -42,7 +42,7 @@ const [userId] = (message.channel.topic || "").split("|");
                     "style": 4,
                     "type": 2,
                     "label": "Close",
-                    "custom_id": "close_ticket"
+                    "custom_id": "crclose"
                   },
                   {
                     "style": 3,
