@@ -1,13 +1,17 @@
 module.exports = {
-    name: "inprogress",
+    name: "completed",
 
     async execute (message) {
         const isAdmin = message.member.permissions.has("Administrator");
         if (!isAdmin) {
             return;
+
         }
+
+
         const userId = message.channel.topic;
-        const member = await message.guild.members.fetch(userId)
+        const member = await message.guild.members.fetch(userId);
+        await member.roles.add("1503255440341864489");
         await message.delete();
         await message.channel.send({
   "flags": 32768,
@@ -17,7 +21,7 @@ module.exports = {
       "components": [
         {
           "type": 10,
-          "content": "# <:m_Heart:1504308082287575151> Order In-Progress"
+          "content": "# <:m_Heart:1504308082287575151> Order Completed"
         },
         {
           "type": 10,
@@ -30,7 +34,7 @@ module.exports = {
         },
         {
           "type": 10,
-          "content": "Your payment has been verified & your order is now in progress. If you need any additional features, ensure to let Mistle know. Additionally, if you have any questions, ensure to ask promptly. Thank you for ordering with **Stack Dev**, & we hope you have an enjoyable order experience."
+          "content": "Your order has been completed. Thank you for ordering with **Stack Dev**. We hope to see you return in the future if you need more bots or features. Ensure to refer us as your developer, and to give credits when do."
         },
         {
           "type": 14,
@@ -42,7 +46,7 @@ module.exports = {
             {
               "style": 1,
               "type": 2,
-              "label": "In Progress",
+              "label": "Completed",
               "disabled": true,
               "flow": {
                 "actions": []
