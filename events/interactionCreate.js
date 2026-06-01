@@ -9,7 +9,12 @@ module.exports = {
       }
 
       if (interaction.isButton()) {
-        const btn = client.buttons.get(interaction.customId);
+        let btn =
+          client.buttons.get(interaction.customId) ||
+          [...client.buttons.values()].find(button =>
+            interaction.customId.startsWith(button.customId)
+          );
+
         if (btn) await btn.execute(interaction);
       }
 
@@ -25,8 +30,12 @@ module.exports = {
 
     } catch (err) {
       console.error(err);
-      if (!interaction.replied) {
-        interaction.reply({ content: "<:xMark:1503593360995254383> An error occurred.", ephemeral: true });
+
+      if (!interaction.replied && !interaction.deferred) {
+        interaction.reply({
+          content: "<:xMark:1503593360995254383> An error occurred.",
+          flags: 64
+        });
       }
     }
   }
