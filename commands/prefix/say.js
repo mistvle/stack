@@ -7,7 +7,7 @@ module.exports = {
             return;
         }
         await message.delete();
-        const text = args.split(0).join(" ");
+        const text = args.join(" ");
         await message.channel.send(text)
     }
 }
