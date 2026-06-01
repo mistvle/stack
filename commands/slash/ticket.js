@@ -315,7 +315,7 @@ Reason: ${reason}`;
             "components": [
               {
                 "type": 10,
-                "content": `# <:fcso_qmark:1501770231524098119> Close Request\n<@${userId}>`
+                "content": `# <:bell:1503469398676209820> Close Request\n<@${userId}>`
               },
               {
                 "type": 14,

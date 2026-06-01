@@ -125,7 +125,7 @@ module.exports = {
         },
         {
           "type": 10,
-          "content": "<:bell:1503469398676209820> A new support ticket has been opened. Ensure to assist the user with their inquiries promptly.\n\n**Ticket Guidelines**\n- Remain respectful & patient with our team\n- Do not ping members of our team; they have already been notified of your ticket being opened\n- Our team's decision is final; arguing about it is not permitted.\n\n**Inquiry:** ${reason}"
+          "content": `<:bell:1503469398676209820> A new support ticket has been opened. Ensure to assist the user with their inquiries promptly.\n\n**Ticket Guidelines**\n- Remain respectful & patient with our team\n- Do not ping members of our team; they have already been notified of your ticket being opened\n- Our team's decision is final; arguing about it is not permitted.\n\n**Inquiry:** ${reason}`
         },
         {
           "type": 14,
