@@ -10,10 +10,10 @@ module.exports = {
 
 
         const userId = message.channel.topic;
-        const member = message.guild.members.fetch(userId);
+        const member = await message.guild.members.fetch(userId);
         await member.roles.add("1503255440341864489");
         await message.delete();
-        await message.reply({
+        await message.channel.send({
   "flags": 32768,
   "components": [
     {
