@@ -7,7 +7,11 @@ module.exports = {
         if (!hasRole && !isAdmin) {
             return;
         }
-        const [userId] = (message.channel.topic || "").split("|");
+        if (!message.channel.topic || !/^\d+(\|\d+)?$/.test(message.channel.topic)) {
+    return;
+}
+
+const [userId] = (message.channel.topic || "").split("|");
         await message.delete();
         await message.channel.send({
         "flags": 32768,
