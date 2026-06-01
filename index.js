@@ -19,6 +19,9 @@ client.slashCommands = new Collection();
 client.buttons = new Collection();
 client.menus = new Collection();
 client.modals = new Collection();
+const db = require("./db");
+
+client.db = db;
 
 // handlers
 require("./handlers/commandHandler")(client);
