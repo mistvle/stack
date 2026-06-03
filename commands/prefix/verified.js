@@ -6,8 +6,8 @@ module.exports = {
         if (!isAdmin) {
             return;
         }
-
+        const userId = message.channel.topic;
         await message.delete();
-        await message.channel.send("<:check:1503593424299753555> Payment verified. You will receive a notification once your order has been started.")
+        await message.channel.send(`<:check:1503593424299753555> Payment verified. You will receive a notification once your order has been started.\n-# <@${userId}>`)
     }
 }
