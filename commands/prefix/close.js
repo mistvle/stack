@@ -135,7 +135,7 @@ Reason: ${reason}`;
           url: "https://media.discordapp.net/attachments/1510896301028409465/1510896476837122180/footer_v2.png?ex=6a1e7b7f&is=6a1d29ff&hm=96dc3d9b81f4097813b006c3055bb9eee59f0926665d2ca4b4a465530f6d6258&=&format=webp&quality=lossless"
         },
         description:
-`A ticket has been closed. Review information regarding it below.
+`A ticket has been closed. Review informaton regarding it below.
 
 **Channel Name:** ${channel.name}
 **Channel ID:** ${channel.id}
