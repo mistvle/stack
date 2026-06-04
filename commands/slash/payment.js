@@ -63,8 +63,8 @@ module.exports = {
 
             // Attempt release/update
             try {
-                await axios.post(
-                    `https://itemconfiguration.roblox.com/v1/assets/${ASSET_ID}/release`,
+                await await axios.patch(
+    "https://itemconfiguration.roblox.com/v1/collectibles/7792b23c-2d06-46cc-8331-ee0f18a98fe1",
                     {
                         saleStatus: "OnSale",
                         priceConfiguration: {
@@ -73,9 +73,12 @@ module.exports = {
                     },
                     {
                         headers: {
-                            Cookie: `.ROBLOSECURITY=${cookie}`,
-                            "X-CSRF-TOKEN": csrfToken
-                        }
+    Cookie: `.ROBLOSECURITY=${cookie}`,
+    "X-CSRF-TOKEN": csrfToken,
+    "Content-Type": "application/json",
+    "Origin": "https://create.roblox.com",
+    "Referer": "https://create.roblox.com/"
+}
                     }
                 );
             } catch {
@@ -84,17 +87,18 @@ module.exports = {
                 await axios.post(
     "https://itemconfiguration.roblox.com/v1/collectibles/7792b23c-2d06-46cc-8331-ee0f18a98fe1",
     {
-        isFree: false,
-        optOutFromRegionalPricing: false,
-        priceInRobux: 1,
-        priceOffset: amount - 5,
-        quantityLimitPerUser: 0,
-        resaleRestriction: 2,
-        saleStatus: 0,
-        saleLocationConfiguration: {
-            saleLocationType: 3
-        }
-    },
+    isFree: false,
+    optOutFromRegionalPricing: false,
+    priceInRobux: 1,
+    priceOffset: amount - 5,
+    quantityLimitPerUser: 0,
+    resaleRestriction: 2,
+    saleStatus: 0,
+    saleLocationConfiguration: {
+        saleLocationType: 3,
+        places: []
+    }
+},
     {
         headers: {
             Cookie: `.ROBLOSECURITY=${cookie}`,
