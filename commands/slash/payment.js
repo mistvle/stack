@@ -82,19 +82,27 @@ module.exports = {
 
                 // Already released → update price
                 await axios.post(
-                    `https://itemconfiguration.roblox.com/v1/assets/${ASSET_ID}/update-price`,
-                    {
-                        priceConfiguration: {
-                            priceInRobux: amount
-                        }
-                    },
-                    {
-                        headers: {
-                            Cookie: `.ROBLOSECURITY=${cookie}`,
-                            "X-CSRF-TOKEN": csrfToken
-                        }
-                    }
-                );
+    "https://itemconfiguration.roblox.com/v1/collectibles/7792b23c-2d06-46cc-8331-ee0f18a98fe1",
+    {
+        isFree: false,
+        optOutFromRegionalPricing: false,
+        priceInRobux: 1,
+        priceOffset: amount - 5,
+        quantityLimitPerUser: 0,
+        resaleRestriction: 2,
+        saleStatus: 0,
+        saleLocationConfiguration: {
+            saleLocationType: 3
+        }
+    },
+    {
+        headers: {
+            Cookie: `.ROBLOSECURITY=${cookie}`,
+            "X-CSRF-TOKEN": csrfToken,
+            "Content-Type": "application/json"
+        }
+    }
+);
             }
 
             await interaction.channel.send({
