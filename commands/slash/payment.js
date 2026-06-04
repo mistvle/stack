@@ -162,18 +162,20 @@ module.exports = {
             });
 
         } catch (error) {
+    console.log("========== ROBLOX ERROR ==========");
     console.log("STATUS:", error.response?.status);
 
-    console.log(
-        "BODY:",
-        JSON.stringify(error.response?.data, null, 2)
-    );
+    if (error.response?.data) {
+        console.log(
+            JSON.stringify(error.response.data, null, 2)
+        );
+    }
+
+    console.log("==================================");
 
     await interaction.editReply({
         content: `Error ${error.response?.status || "Unknown"}`
     });
-
-
-        }
+}
     }
 };
