@@ -162,11 +162,18 @@ module.exports = {
             });
 
         } catch (error) {
-            console.error(error);
+    console.log("STATUS:", error.response?.status);
 
-            await interaction.editReply({
-                content: `<:xMark:1503593360995254383> Failed to update the T-Shirt price.\n\`\`\`${error.message}\`\`\``
-            });
+    console.log(
+        "BODY:",
+        JSON.stringify(error.response?.data, null, 2)
+    );
+
+    await interaction.editReply({
+        content: `Error ${error.response?.status || "Unknown"}`
+    });
+
+
         }
     }
 };
