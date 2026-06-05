@@ -18,10 +18,16 @@ module.exports = async (client) => {
             const channel = client.channels.cache.get(CHANNEL_ID);
             if (!channel) return;
 
-            const sales = await noblox.getGamePassSales(
-                GAMEPASS_ID,
-                25
-            );
+            const sales = await noblox.getGroupTransactions(
+    1089350035,
+    "Sale",
+    "Desc",
+    25
+);
+
+console.log("TRANSACTION:");
+console.log(JSON.stringify(sales[0], null, 2));
+return;
 
             for (const sale of sales.reverse()) {
 
