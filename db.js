@@ -22,5 +22,10 @@ CREATE TABLE IF NOT EXISTS giveaways (
     winners TEXT DEFAULT '[]'
 )
 `).run();
+db.prepare(`
+CREATE TABLE IF NOT EXISTS purchase_logs (
+    transaction_id TEXT PRIMARY KEY
+)
+`).run();
 
 module.exports = db;
